@@ -1,0 +1,201 @@
+id,statement,label
+ai2-adapt-dev/flan_v2_converted_80000,Czech is a language.,1
+ai2-adapt-dev/flan_v2_converted_80000,Czech is not a language.,0
+ai2-adapt-dev/flan_v2_converted_80001,Boquitas pintadas is a 1974 Argentine film.,1
+ai2-adapt-dev/flan_v2_converted_80001,Boquitas pintadas is a 1974 German film.,0
+ai2-adapt-dev/flan_v2_converted_80001,Black Science is a creator-owned American comic book series.,1
+ai2-adapt-dev/flan_v2_converted_80001,Black Science is a creator-owned Chinese comic book series.,0
+ai2-adapt-dev/flan_v2_converted_80001,Independence Creek is a river in Texas.,1
+ai2-adapt-dev/flan_v2_converted_80001,Independence Creek is a river in Beijing.,0
+ai2-adapt-dev/flan_v2_converted_80018,Apoptosis means cell death.,1
+ai2-adapt-dev/flan_v2_converted_80018,Apoptosis means cell growth and proliferation.,0
+ai2-adapt-dev/flan_v2_converted_80021,O. J. Simpson was on trial for the murder of his ex-wife and has also been accused of abuse by other women.,1
+ai2-adapt-dev/flan_v2_converted_80021,O. J. Simpson was never on trial for the murder of his ex-wife and has never been accused of abuse by any women.,0
+ai2-adapt-dev/flan_v2_converted_80021,Richard Gere is an actor and activist.,1
+ai2-adapt-dev/flan_v2_converted_80021,Richard Gere is a hockey player.,0
+ai2-adapt-dev/flan_v2_converted_80030,Hypertension is present when a person's systolic blood pressure is always 140 or higher.,1
+ai2-adapt-dev/flan_v2_converted_80030,Hypertension is present when a person's systolic blood pressure is always 90 or lower.,0
+ai2-adapt-dev/flan_v2_converted_80030,Hypertension is also called "high blood pressure".,1
+ai2-adapt-dev/flan_v2_converted_80030,Hypertension is also called "low blood pressure".,0
+ai2-adapt-dev/flan_v2_converted_80030,Having hypertension increases a person’s chance for developing heart disease.,1
+ai2-adapt-dev/flan_v2_converted_80030,Having hypertension decreases a person’s chance for developing heart disease.,0
+ai2-adapt-dev/flan_v2_converted_80030,Burning fossil fuels has led to an increase in carbon dioxide in the atmosphere.,1
+ai2-adapt-dev/flan_v2_converted_80030,Burning fossil fuels has led to an decrease in carbon dioxide in the atmosphere.,0
+ai2-adapt-dev/flan_v2_converted_80059,Carolyn Rafaelian is the founder of the accessories and jewelry company Alex and Ani.,1
+ai2-adapt-dev/flan_v2_converted_80059,Carolyn Rafaelian is the founder of the company Amazon.,0
+ai2-adapt-dev/flan_v2_converted_80068,A spark plug is used for ignition of fuel mixture in spark ignition engine cylinder.,1
+ai2-adapt-dev/flan_v2_converted_80068,A fuel injector is used for ignition of fuel mixture in spark ignition engine cylinder.,0
+ai2-adapt-dev/flan_v2_converted_80080,The Ranch is an American comedy web television series.,1
+ai2-adapt-dev/flan_v2_converted_80080,The Ranch is an Arabic comedy web television series.,0
+ai2-adapt-dev/flan_v2_converted_80086,Human being only has one heart.,1
+ai2-adapt-dev/flan_v2_converted_80086,Human being only has two hearts.,0
+ai2-adapt-dev/flan_v2_converted_80093,Chesney Hughes is a famous cricket player.,1
+ai2-adapt-dev/flan_v2_converted_80093,Chesney Hughes is a famous football player.,0
+ai2-adapt-dev/flan_v2_converted_80093,French is one of the official languages of Haiti.,1
+ai2-adapt-dev/flan_v2_converted_80093,Chinese is one of the official languages of Haiti.,0
+ai2-adapt-dev/flan_v2_converted_80127,The Supreme Court of Canada is located in Ottawa.,1
+ai2-adapt-dev/flan_v2_converted_80127,The Supreme Court of Canada is located in Paris.,0
+ai2-adapt-dev/flan_v2_converted_80144,Silent Spring is an environmental science book by Rachel Carson.,1
+ai2-adapt-dev/flan_v2_converted_80144,Silent Spring is a work of fiction by John Steinbeck.,0
+ai2-adapt-dev/flan_v2_converted_80145,An ectopic pregnancy cannot be carried to term.,1
+ai2-adapt-dev/flan_v2_converted_80145,An ectopic pregnancy can be carried to term.,0
+ai2-adapt-dev/flan_v2_converted_80162,People who fly in an airplane are commonly called passengers.,1
+ai2-adapt-dev/flan_v2_converted_80162,People who fly in an airplane are commonly called mothers.,0
+ai2-adapt-dev/flan_v2_converted_80162,Airplane is a transportation device that flies in the sky.,1
+ai2-adapt-dev/flan_v2_converted_80162,Airplane is a transportation device that dives in the sea.,0
+ai2-adapt-dev/flan_v2_converted_80175,Store is a place that sells things.,1
+ai2-adapt-dev/flan_v2_converted_80175,Store is not a place that sells things.,0
+ai2-adapt-dev/flan_v2_converted_80184,Hello is an English greeting word and phrase.,1
+ai2-adapt-dev/flan_v2_converted_80184,Tomato is an English greeting word and phrase.,0
+ai2-adapt-dev/flan_v2_converted_80187,Europeans discovered French Polynesia.,1
+ai2-adapt-dev/flan_v2_converted_80187,The United States was the nation that discovered French Polynesia.,0
+ai2-adapt-dev/flan_v2_converted_80193,Birds must breathe air.,1
+ai2-adapt-dev/flan_v2_converted_80193,Birds do not need to breathe air.,0
+ai2-adapt-dev/flan_v2_converted_80199,"Great Britain competed at the 2018 Winter Olympics in Pyeongchang, South Korea.",1
+ai2-adapt-dev/flan_v2_converted_80199,"Great Britain did not compete at the 2018 Winter Olympics in Pyeongchang, South Korea.",0
+ai2-adapt-dev/flan_v2_converted_80201,"Olympia, Washington is considered the capitol of the state of Washington.",1
+ai2-adapt-dev/flan_v2_converted_80201,"Austin, Texas is considered the capitol of the state of Washington.",0
+ai2-adapt-dev/flan_v2_converted_80219,Arnold Schwarzenegger was the Governor of California.,1
+ai2-adapt-dev/flan_v2_converted_80219,Arnold Schwarzenegger was the Governor of Texas.,0
+ai2-adapt-dev/flan_v2_converted_80222,Chloroplasts conduct photosynthesis.,1
+ai2-adapt-dev/flan_v2_converted_80222,Chloroplasts do not conduct photosynthesis.,0
+ai2-adapt-dev/flan_v2_converted_80222,One complete orbit of Earth takes 365.256 days.,1
+ai2-adapt-dev/flan_v2_converted_80222,One complete orbit of Earth takes 180 days.,0
+ai2-adapt-dev/flan_v2_converted_80222,The average distance between the Earth and the Sun is 149.60 million km.,1
+ai2-adapt-dev/flan_v2_converted_80222,The average distance between the Earth and the Sun is 50 million km.,0
+ai2-adapt-dev/flan_v2_converted_80230,In the year 1900 there were 45 US states.,1
+ai2-adapt-dev/flan_v2_converted_80230,In the year 1900 there were 28 US states.,0
+ai2-adapt-dev/flan_v2_converted_80223,Artemis was a virgin goddess.,1
+ai2-adapt-dev/flan_v2_converted_80223,Artemis was not a virgin goddess.,0
+ai2-adapt-dev/flan_v2_converted_80224,The Nile river is important to the Ancient Egyptians because it kept them alive and developed their knowledge.,1
+ai2-adapt-dev/flan_v2_converted_80224,The Nile river is important to the Ancient Rome because it kept them alive and developed their knowledge.,0
+ai2-adapt-dev/flan_v2_converted_80233,Fish have a circulatory system with a two-chambered heart.,1
+ai2-adapt-dev/flan_v2_converted_80233,Fish do not have a circulatory system with a two-chambered heart.,0
+ai2-adapt-dev/flan_v2_converted_80240,A Xylophone is an instrument.,1
+ai2-adapt-dev/flan_v2_converted_80240,A Xylophone is not an instrument.,0
+ai2-adapt-dev/flan_v2_converted_80246,"Cerebrospinal fluid (CSF) is a clear, colorless body fluid found in the brain and spinal cord.",1
+ai2-adapt-dev/flan_v2_converted_80246,"Cerebrospinal fluid (CSF) is colorful body fluid not found in the brain and spinal cord.",0
+ai2-adapt-dev/flan_v2_converted_80250,"Principal components of a CPU include the arithmetic logic unit (ALU), processor registers, and a control unit.",1
+ai2-adapt-dev/flan_v2_converted_80250,"Principal components of a CPU do not include the arithmetic logic unit (ALU), processor registers, and a control unit.",0
+ai2-adapt-dev/flan_v2_converted_80250,"The actual distance from Earth to the Moon varies from 356,500 km at perigee to 406,700 km at apogee.",1
+ai2-adapt-dev/flan_v2_converted_80250,"The actual distance from Earth to the Moon varies from 1800 km at perigee to 2500 km at apogee.",0
+ai2-adapt-dev/flan_v2_converted_80252,Italy joined the Triple Alliance with Germany and Austria-Hungary.,1
+ai2-adapt-dev/flan_v2_converted_80252,Italy joined the Triple Alliance with France and Great Britain.,0
+ai2-adapt-dev/flan_v2_converted_80253,The Whopper is a sandwich sold exclusively at Burger King.,1
+ai2-adapt-dev/flan_v2_converted_80253,The Whopper is a sandwich sold exclusively at McDonald’s.,0
+ai2-adapt-dev/flan_v2_converted_80253,John D. Rockefeller was one of the richest people in America.,1
+ai2-adapt-dev/flan_v2_converted_80253,John D. Rockefeller was one of the poorest people in America.,0
+ai2-adapt-dev/flan_v2_converted_80258,The dominate circulating currency in Japan is the Japanese yen.,1
+ai2-adapt-dev/flan_v2_converted_80258,The dominate circulating currency in Japan is the U.S. dollars.,0
+ai2-adapt-dev/flan_v2_converted_80284,The north pole is at the northern hemisphere.,1
+ai2-adapt-dev/flan_v2_converted_80284,The north pole is at the sourthern hemisphere.,0
+ai2-adapt-dev/flan_v2_converted_80297,Sekinchan is in Malaysia.,1
+ai2-adapt-dev/flan_v2_converted_80297,Sekinchan is in India.,0
+ai2-adapt-dev/flan_v2_converted_80301,Thanksgiving is a public holiday in the United States.,1
+ai2-adapt-dev/flan_v2_converted_80301,Thanksgiving is not a public holiday in the United States.,0
+ai2-adapt-dev/flan_v2_converted_80301,Honda is well-known for selling automobiles and motorcycles.,1
+ai2-adapt-dev/flan_v2_converted_80301,Honda is well-known for selling burgers and fries.,0
+ai2-adapt-dev/flan_v2_converted_80313,A tree trimmer is a person who trims trees.,1
+ai2-adapt-dev/flan_v2_converted_80313,A tree trimmer is a person who cook food.,0
+ai2-adapt-dev/flan_v2_converted_80363,Beyoncé's self-titled fifth studio album was released in 2013.,1
+ai2-adapt-dev/flan_v2_converted_80363,Beyoncé's self-titled fifth studio album was released in 2001.,0
+ai2-adapt-dev/flan_v2_converted_80363,"Crazy in Love" was re-recorded by Beyoncé for the film Fifty Shades of Grey (2015).,1
+ai2-adapt-dev/flan_v2_converted_80363,"Crazy in Love" was re-recorded by Eminem for the film Fifty Shades of Grey (2015).,0
+ai2-adapt-dev/flan_v2_converted_80368,Mount Sharp is located on Mars.,1
+ai2-adapt-dev/flan_v2_converted_80368,Mount Sharp is located on Saturn.,0
+ai2-adapt-dev/flan_v2_converted_80368,Human beings have not traveled to Mars.,1
+ai2-adapt-dev/flan_v2_converted_80368,Human beings have traveled to Mars.,0
+ai2-adapt-dev/flan_v2_converted_80370,A sand dune is a mound of sand.,1
+ai2-adapt-dev/flan_v2_converted_80370,A sand dune is a pond of water.,0
+ai2-adapt-dev/flan_v2_converted_80368,Mike DeWine is Governor of Ohio.,1
+ai2-adapt-dev/flan_v2_converted_80368,Mike DeWine is Governor of Tennessee .,0
+ai2-adapt-dev/flan_v2_converted_80381,Baptism is a symbolic Christian rite using water.,1
+ai2-adapt-dev/flan_v2_converted_80381,Baptism is a symbolic Buddhist rite using water.,0
+ai2-adapt-dev/flan_v2_converted_80381,"In modern Hebrew, b'nei yisrael can denote the Jewish people at any time in history.",1
+ai2-adapt-dev/flan_v2_converted_80381,"In modern Hebrew, b'nei yisrael can denote the Irish people at any time in history.",0
+ai2-adapt-dev/flan_v2_converted_80387,Methuselah was the son of Enoch.,1
+ai2-adapt-dev/flan_v2_converted_80387,Methuselah was the son of Noah.,0
+ai2-adapt-dev/flan_v2_converted_80387,Methuselah is the grandfather of Noah.,1
+ai2-adapt-dev/flan_v2_converted_80387,Methuselah is the grandfather of Enoch.,0
+ai2-adapt-dev/flan_v2_converted_80393,Stephen Sondheim wrote "Send In the Clowns".,1
+ai2-adapt-dev/flan_v2_converted_80393,Post Malone wrote "Send In the Clowns".,0
+ai2-adapt-dev/flan_v2_converted_80401,A blacksmith is a man using an anvil and working with metal.,1
+ai2-adapt-dev/flan_v2_converted_80401,A doctor is a man using an anvil and working with metal.,0
+ai2-adapt-dev/flan_v2_converted_80408,The Nobel Prize wasn't yet established when Shakespeare was alive.,1
+ai2-adapt-dev/flan_v2_converted_80408,The Nobel Prize has established when Shakespeare was alive.,0
+ai2-adapt-dev/flan_v2_converted_80410,Piano is a musical instrument.,1
+ai2-adapt-dev/flan_v2_converted_80410,Piano is a cooking tool.,0
+ai2-adapt-dev/flan_v2_converted_80412,myoblast is a type of cell involved in muscle development.,1
+ai2-adapt-dev/flan_v2_converted_80412,myoblast is a type of cell not involved in muscle development.,0
+ai2-adapt-dev/flan_v2_converted_80412,fusion is the process of combining two entities.,1
+ai2-adapt-dev/flan_v2_converted_80412,fission is the process of combining two entities.,0
+ai2-adapt-dev/flan_v2_converted_80412,glycoprotein is a molecule composed of a protein and a carbohydrate.,1
+ai2-adapt-dev/flan_v2_converted_80412,glycoprotein is a molecule composed of a fat and a water.,0
+ai2-adapt-dev/flan_v2_converted_80412,lovastatin is a medication used to lower cholesterol.,1
+ai2-adapt-dev/flan_v2_converted_80412,lovastatin is a medication used to lower blood sugar.,0
+ai2-adapt-dev/flan_v2_converted_80428,George Soros is American.,1
+ai2-adapt-dev/flan_v2_converted_80428,George Soros is Chinese.,0
+ai2-adapt-dev/flan_v2_converted_80432,John D. Rockefeller was a major businessman not a guitar player.,1
+ai2-adapt-dev/flan_v2_converted_80432,John D. Rockefeller became famous as a guitar player.,0
+ai2-adapt-dev/flan_v2_converted_80432,Sea otters are found only in or near seas or oceans.,1
+ai2-adapt-dev/flan_v2_converted_80432,Sea otters can often be found in mountain streams.,0
+ai2-adapt-dev/flan_v2_converted_80450,Little Women was published in 1868.,1
+ai2-adapt-dev/flan_v2_converted_80450,Little Women was published in 1468.,0
+ai2-adapt-dev/flan_v2_converted_80512,A Hound is a type of dog.,1
+ai2-adapt-dev/flan_v2_converted_80512,A Hound is a type of fish.,0
+ai2-adapt-dev/flan_v2_converted_80514,The Great Gatsby was published in 1925.,1
+ai2-adapt-dev/flan_v2_converted_80514,The Great Gatsby was published in 1825.,0
+ai2-adapt-dev/flan_v2_converted_80514,The novel 1984 was published in 1949.,1
+ai2-adapt-dev/flan_v2_converted_80514,The novel 1984 was published in 1599.,0
+ai2-adapt-dev/flan_v2_converted_80514,Mercury is the smallest planet in the solar system.,1
+ai2-adapt-dev/flan_v2_converted_80514,Mercury is the largest planet in the solar system.,0
+ai2-adapt-dev/flan_v2_converted_80514,"Mercury has a radius of 1,516 miles.",1
+ai2-adapt-dev/flan_v2_converted_80514,"Mercury has a radius of 8,516 miles.",0
+ai2-adapt-dev/flan_v2_converted_80514,Aurangabad is located in Maharashtra.,1
+ai2-adapt-dev/flan_v2_converted_80514,Aurangabad is located in China.,0
+ai2-adapt-dev/flan_v2_converted_80514,Marathi is an Indo-Aryan language spoken predominantly by people in India.,1
+ai2-adapt-dev/flan_v2_converted_80514,Marathi is an Indo-Aryan language spoken predominantly by people in Iceland.,0
+ai2-adapt-dev/flan_v2_converted_80514,Communion is the body and blood of Christ given out during mass.,1
+ai2-adapt-dev/flan_v2_converted_80514,Communion is the books of Christ given out during mass.,0
+ai2-adapt-dev/flan_v2_converted_80514,"Wednesday comes from Old English Wodnesdaeg referring to Woden, also called Odin.",1
+ai2-adapt-dev/flan_v2_converted_80514,"Wednesday comes from ancient Phoenician term Waidansi, meaning middle waters.",0
+ai2-adapt-dev/flan_v2_converted_80514,Odin was the pagan god of Norse mythology.,1
+ai2-adapt-dev/flan_v2_converted_80514,Odin was the pagan god of Chinese mythology.,0
+ai2-adapt-dev/flan_v2_converted_80514,Sony is the maker of the Playstation.,1
+ai2-adapt-dev/flan_v2_converted_80514,Apple is the maker of the Playstation.,0
+ai2-adapt-dev/flan_v2_converted_80514,Marilyn Manson is a heavy metal band.,1
+ai2-adapt-dev/flan_v2_converted_80514,Marilyn Manson is a country music band.,0
+ai2-adapt-dev/flan_v2_converted_80517,"Confluentia" means confluence.,1
+ai2-adapt-dev/flan_v2_converted_80517,"Confluentia" means sun.,0
+ai2-adapt-dev/flan_v2_converted_80517,Switzerland’s two largest rivers are the Rhine and Aare.,1
+ai2-adapt-dev/flan_v2_converted_80517,Iraq’s two largest rivers are the Rhine and Aare.,0
+ai2-adapt-dev/flan_v2_converted_80530,Snails and slugs lack a backbone.,1
+ai2-adapt-dev/flan_v2_converted_80530,Snails and slugs have a backbone.,0
+ai2-adapt-dev/flan_v2_converted_80532,The Brooklyn Dodgers was an American Major League baseball team.,1
+ai2-adapt-dev/flan_v2_converted_80532,The Brooklyn Dodgers was an American National Basketball Association team.,0
+ai2-adapt-dev/flan_v2_converted_80538,There are no human habitants on the moon.,1
+ai2-adapt-dev/flan_v2_converted_80538,There are human habitants on the moon.,0
+ai2-adapt-dev/flan_v2_converted_80545,Advantageous means favourable.,1
+ai2-adapt-dev/flan_v2_converted_80545,Advantageous means disgusting.,0
+ai2-adapt-dev/flan_v2_converted_80551,Denial refers to non-acceptance.,1
+ai2-adapt-dev/flan_v2_converted_80551,Denial refers to acceptance.,0
+ai2-adapt-dev/flan_v2_converted_60034,Carbon dioxide molecules consist of a central carbon atom bonded to two oxygen atoms.,1
+ai2-adapt-dev/flan_v2_converted_60034,Carbon dioxide molecules consist of a central carbon atom bonded to two hydrogen atoms.,0
+ai2-adapt-dev/flan_v2_converted_60040,A dog is an animal.,1
+ai2-adapt-dev/flan_v2_converted_60040,A dog is not an animal.,0
+ai2-adapt-dev/flan_v2_converted_60047,"A car is something you drive, not cook with.",1
+ai2-adapt-dev/flan_v2_converted_60047,"A car is something you cook with, not drive.",0
+ai2-adapt-dev/flan_v2_converted_60051,Toyo Suisan is a Japanese company specializing in ramen noodles.,1
+ai2-adapt-dev/flan_v2_converted_60051,Toyo Suisan is a Japanese company specializing in making cars.,0
+ai2-adapt-dev/flan_v2_converted_60051,Złota is a river of Poland.,1
+ai2-adapt-dev/flan_v2_converted_60051,Złota is a river of Mexico.,0
+ai2-adapt-dev/flan_v2_converted_60054,A table does not melt at room temperature.,1
+ai2-adapt-dev/flan_v2_converted_60054,The table melts at room temperature.,0
+ai2-adapt-dev/flan_v2_converted_60067,A Banana is a food while a phone is an electronic device.,1
+ai2-adapt-dev/flan_v2_converted_60067,A phone is a food while a Banana is an electronic device.,0
+ai2-adapt-dev/flan_v2_converted_60071,Samsung Galaxy S II is made by a Korean company.,1
+ai2-adapt-dev/flan_v2_converted_60071,Samsung Galaxy S II is made by a German company.,0
+ai2-adapt-dev/flan_v2_converted_60078,500 grams is 0.5 kilogram.,1
+ai2-adapt-dev/flan_v2_converted_60078,500 grams is 4.5 kilogram.,0
+ai2-adapt-dev/flan_v2_converted_60079,The digits of Pi are infinite.,1
+ai2-adapt-dev/flan_v2_converted_60079,The digits of Pi are finite.,0

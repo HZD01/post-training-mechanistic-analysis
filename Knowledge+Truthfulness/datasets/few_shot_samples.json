@@ -1,0 +1,164 @@
+[
+    {
+        "dataset_name": "cities_cities_disj",
+        "few_shot_examples": [
+            "It is the case either that the city of Kalininskiy is in South Korea or that the city of Aracaju is in Cuba. This statement is: FALSE",
+            "It is the case either that the city of Rawalpindi is in South Africa or that the city of Islamabad is in India. This statement is: FALSE",
+            "It is the case either that the city of Ordos is in China or that the city of Erbil is in South Africa. This statement is: TRUE",
+            "It is the case either that the city of Faridabad is in Iraq or that the city of Zhangye is in China. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "sp_en_trans",
+        "few_shot_examples": [
+            "The Spanish word 'gobernar' means 'to eat'. This statement is: FALSE",
+            "The Spanish word 'edad' means 'clock'. This statement is: FALSE",
+            "The Spanish word 'bosque' means 'forest'. This statement is: TRUE",
+            "The Spanish word 'piel' means 'skin'. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "likely",
+        "few_shot_examples": [
+            "Home / News / 2016 / The 8th China International Furniture Fair\nThe 8th China International Furniture Fair\nThe 8th China International Furniture Fair (CIFF) will be held up This statement is: FALSE",
+            "2013-04-02 09:30:00 2013-04-02 10:30:00 America/New_York Lunch with Senator This statement is: FALSE",
+            "\u2190 The Gospel According to the Old Testament\nThe Gospel According to the Old Testament: A Review \u2192\nThe Gospel According to the Old Testament: A Review\nPosted on January 14, 2012\t This statement is: TRUE",
+            "# Vu\u010dje\n\nVu\u010dje (izvirno srbsko \u0412\u0443\u0447\u0458\u0435) je naselje v Srbiji, ki upravno spada pod Ob\u010dino \u0106uprija; sled This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "tulu_extracted",
+        "few_shot_examples": [
+            "Odin was the pagan god of Chinese mythology. This statement is: FALSE",
+            "Iraq\u2019s two largest rivers are the Rhine and Aare. This statement is: FALSE",
+            "Odin was the pagan god of Norse mythology. This statement is: TRUE",
+            "Switzerland\u2019s two largest rivers are the Rhine and Aare. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "neg_cities",
+        "few_shot_examples": [
+            "The city of Dar es Salaam is not in Tanzania. This statement is: FALSE",
+            "The city of Kozhikode is not in India. This statement is: FALSE",
+            "The city of Dar es Salaam is not in Italy. This statement is: TRUE",
+            "The city of Kozhikode is not in the United States. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "likely_old",
+        "few_shot_examples": [
+            "If you are looking for a reliable, professional and friendly roofing and roofing repair work business in Caulfield North 3161, then you\u2019ve come to the right place. Our team will be happy to visit your home one This statement is: FALSE",
+            "The Elder Scrolls Online: Tamriel Unlimited Collector\u2019s Edition\nThe Elder Scrolls Online: Tamriel Unlimited Collector\u2019s Edition is a special version of the game that includes an exclusive steelbook, a map chart This statement is: FALSE",
+            "The Forgotten Ones (The Forget Me Not Trilogy Book 2)\nThe Forget Me Not Trilogy: Book 2\nThe Forgotten Ones is the second book in the Forget Me This statement is: TRUE",
+            "Home > Blog > 2018 > April > FDLE Investigation of Florida's Child Abuse Hotline\nThe Florida Department of Law Enforcement (FDLE) has been investigating the Florida Abuse Hotline This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "counterfact_true_false",
+        "few_shot_examples": [
+            "Haut Atlas is located in the country of Canada. This statement is: FALSE",
+            "Tony Rumble was native to Lisbon. This statement is: FALSE",
+            "Haut Atlas is located in the country of Morocco. This statement is: TRUE",
+            "Tony Rumble was native to Boston. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "cities",
+        "few_shot_examples": [
+            "The city of Dar es Salaam is in Italy. This statement is: FALSE",
+            "The city of Kozhikode is in the United States. This statement is: FALSE",
+            "The city of Dar es Salaam is in Tanzania. This statement is: TRUE",
+            "The city of Kozhikode is in India. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "animal_class",
+        "few_shot_examples": [
+            "The tuna is a mammal. This statement is: FALSE",
+            "The giraffe is a crustacean. This statement is: FALSE",
+            "The otter is a mammal. This statement is: TRUE",
+            "The skunk is a mammal. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "cities_cities_conj",
+        "few_shot_examples": [
+            "It is the case both that the city of Antananarivo is in Madagascar and that the city of Ansan-si is in Sudan. This statement is: FALSE",
+            "It is the case both that the city of Xiamen is in Russia and that the city of Hangzhou is in China. This statement is: FALSE",
+            "It is the case both that the city of Zigong is in China and that the city of Shah Alam is in Malaysia. This statement is: TRUE",
+            "It is the case both that the city of Huaibei is in China and that the city of Victoria de Durango is in Mexico. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "common_claim_true_false",
+        "few_shot_examples": [
+            "Bumblebees aren't actually bees. This statement is: FALSE",
+            "Websites' bouncers are often fishes. This statement is: FALSE",
+            "Remoteness from centres of population has historically been one of the criteria used to determine protected areas. This statement is: TRUE",
+            "Doing nothing can be more stressful than taking action. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "companies_true_false",
+        "few_shot_examples": [
+            "Wells Fargo engages in the discovery, development, manufacture and sale of a broad and diversified line of healthcare products. This statement is: FALSE",
+            "Procter & Gamble has headquarters in Luxembourg. This statement is: FALSE",
+            "Sanofi has headquarters in France. This statement is: TRUE",
+            "Johnson & Johnson has headquarters in United States. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "larger_than",
+        "few_shot_examples": [
+            "Fifty-eight is larger than ninety-six. This statement is: FALSE",
+            "Seventy-nine is larger than ninety-seven. This statement is: FALSE",
+            "Seventy-eight is larger than seventy-three. This statement is: TRUE",
+            "Ninety-six is larger than sixty-six. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "element_symb",
+        "few_shot_examples": [
+            "Platinum has the symbol La. This statement is: FALSE",
+            "Titanium has the symbol B. This statement is: FALSE",
+            "Astatine has the symbol At. This statement is: TRUE",
+            "Arsenic has the symbol As. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "neg_sp_en_trans",
+        "few_shot_examples": [
+            "The Spanish word 'bosque' does not mean 'forest'. This statement is: FALSE",
+            "The Spanish word 'piel' does not mean 'skin'. This statement is: FALSE",
+            "The Spanish word 'gobernar' does not mean 'to eat'. This statement is: TRUE",
+            "The Spanish word 'edad' does not mean 'clock'. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "facts",
+        "few_shot_examples": [
+            "Cacti store water in their ears. This statement is: FALSE",
+            "The process of aging is influenced solely by environmental factors. This statement is: FALSE",
+            "The scientific method is a systematic process for investigating phenomena and acquiring new knowledge. This statement is: TRUE",
+            "Birds have feathers and wings. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "inventors",
+        "few_shot_examples": [
+            "Frederick McKinley Jones lived in Japan. This statement is: FALSE",
+            "Elisha Otis lived in the U.K. This statement is: FALSE",
+            "Candace Pert lived in the U.S. This statement is: TRUE",
+            "Levi Strauss lived in the U.S. This statement is: TRUE"
+        ]
+    },
+    {
+        "dataset_name": "smaller_than",
+        "few_shot_examples": [
+            "Seventy-eight is smaller than seventy-three. This statement is: FALSE",
+            "Ninety-six is smaller than sixty-six. This statement is: FALSE",
+            "Fifty-eight is smaller than ninety-six. This statement is: TRUE",
+            "Seventy-nine is smaller than ninety-seven. This statement is: TRUE"
+        ]
+    }
+]

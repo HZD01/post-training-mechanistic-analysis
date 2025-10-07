@@ -1,0 +1,38 @@
+[
+    {
+        "model_1": "llama-3.1-8b",
+        "model_2": "llama-3.1-8b-instruct",
+        "train_datasets": [
+            "sp_en_trans",
+            "animal_class",
+            "inventors",
+            "element_symb",
+            "facts"
+        ],
+        "val_dataset": "cities",
+        "probe class": "MMProbe",
+        "prompt": [
+            "The city of Dar es Salaam is in Italy. This statement is: FALSE",
+            "The city of Kozhikode is in the United States. This statement is: FALSE",
+            "The city of Dar es Salaam is in Tanzania. This statement is: TRUE",
+            "The city of Kozhikode is in India. This statement is: TRUE"
+        ],
+        "nif_m1_m1_true_false": 0.9518072289156626,
+        "nif_m1_m1_false_true": 0.7069672131147541,
+        "avg_nif_m1_m1": 0.8293872210152083,
+        "nif_m2_m1_true_false": 0.9859437751004017,
+        "nif_m2_m1_false_true": 0.6577868852459017,
+        "avg_nif_m2_m1": 0.8218653301731517,
+        "nif_m1_m2_true_false": 0.998019801980198,
+        "nif_m1_m2_false_true": 0.793713163064833,
+        "avg_nif_m1_m2": 0.8958664825225156,
+        "nif_m2_m2_true_false": 0.998019801980198,
+        "nif_m2_m2_false_true": 0.756385068762279,
+        "avg_nif_m2_m2": 0.8772024353712384,
+        "p_diff_m1_true_base": 0.9453125,
+        "p_diff_m1_false_base": -0.90625,
+        "p_diff_m2_true_base": 0.97265625,
+        "p_diff_m2_false_base": -0.98828125,
+        "intervention_coefficient": 1
+    }
+]
