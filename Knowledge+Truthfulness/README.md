@@ -86,14 +86,14 @@ Before running patching experiments, you need to process the raw CSV datasets to
 ```bash
 # For LLaMA-3.1-8B
 python patching_process_data.py --model llama-3.1-8b --dataset cities --device cuda:0
+python patching_process_data.py --model llama-3.1-8b --dataset neg_cities --device cuda:0
 python patching_process_data.py --model llama-3.1-8b --dataset sp_en_trans --device cuda:0
-python patching_process_data.py --model llama-3.1-8b --dataset animal_class --device cuda:0
-python patching_process_data.py --model llama-3.1-8b --dataset inventors --device cuda:0
-python patching_process_data.py --model llama-3.1-8b --dataset element_symb --device cuda:0
-python patching_process_data.py --model llama-3.1-8b --dataset facts --device cuda:0
+python patching_process_data.py --model llama-3.1-8b --dataset neg_sp_en_trans --device cuda:0
+python patching_process_data.py --model llama-3.1-8b --dataset larger_than --device cuda:0
+python patching_process_data.py --model llama-3.1-8b --dataset smaller_than --device cuda:0
 ```
 
-This will create `*_paired.json` files in the datasets directory with matched true/false statement pairs for each model family.
+This will create `*_paired.json` files in the datasets directory with matched true/false statement pairs.
 
 ### Step 2: Generate Activations
 
@@ -117,7 +117,7 @@ python patching.py --model llama-3.1-8b-instruct --dataset cities --classes true
 
 ### Cross-Model Patching
 
-Patching between two models (replacing activations from one model with those from another):
+Patching between two models (replacing activations of true statements from one model with activations of false statements from another model):
 
 ```bash
 python patching.py --model llama-3.1-8b llama-3.1-8b-instruct --dataset cities --classes true_false --device cuda:0
@@ -125,12 +125,25 @@ python patching.py --model llama-3.1-8b llama-3.1-8b-instruct --dataset cities -
 
 ## Visualizing Results
 
-After running patching experiments, you can visualize the results:
+After running patching experiments, you can visualize the results.
+
+### Visualizing One Patching Result
 
 ```bash
-python patching_visualize.py
+python patching_visualize.py --dataset cities --classes true_false --model_names1 llama-3.1-8b
 ```
 
+If you want to visualize the cross-model patching result, please write the two model's names after the "--model_names1", such as "--model_names1 llama-3.1-8b llama-3.1-8b-instruct" (not "--model_names2").
+
+```bash
+python patching_visualize.py --dataset cities --classes true_false --model_names1 llama-3.1-8b
+```
+
+### Visualizing the Comparison of Two Patching Results
+
+```bash
+python patching_visualize.py --dataset cities --classes true_false --model_names1 llama-3.1-8b --model_names2 llama-3.1-8b-instruct
+```
 
 
 This directory is adapted from https://github.com/saprmarks/geometry-of-truth

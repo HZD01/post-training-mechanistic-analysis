@@ -15,6 +15,8 @@ def sample_data(model_name, dataset, device):
     length_list = []
     if model_name in ['llama-3.1-8b', 'llama-3.1-8b-instruct', 'llama-3.1-8b-sft']:
         model_family = 'llama3'
+    elif model_name in ['llama-2-13b', 'llama-2-13b-instruct']:
+        model_family = 'llama2'
     elif model_name in ['mistral-7B', 'mistral-7B-instruct', 'mistral-7B-SFT']:
         model_family = 'mistral'
     elif model_name in ['deepseek-V2-lite', 'deepseek-V2-lite-chat']:
@@ -39,6 +41,7 @@ def sample_data(model_name, dataset, device):
             tokens = model.tokenizer(row['statement']).input_ids  # tokenize the statement
             # print(tokens)
             length_list.append(len(tokens))
+            # continue
             
             if model_family == 'llama3':
                 if args.dataset == 'cities':
@@ -73,6 +76,41 @@ def sample_data(model_name, dataset, device):
                     # Pattern: [Beginning token] / The / Spanish / word / ' / [Spanish word of 2 tokens] / ' / does / not / mean / ' / [English word of 1 token] / '.
                     if not(len(tokens) == 14 and tokens[0:5] == [128000, 791, 15506, 3492, 364] and \
                             tokens[7:12] == [6, 1587, 539, 3152, 364] and tokens[13] == 4527):
+                        continue
+            
+            elif model_family == 'llama2':
+                if args.dataset == 'cities':
+                    # Pattern: [Beginning token] / the / city / of/ [city name of 3 tokens] / is / in / [country name of 1 token] / .
+                    if not (len(tokens) == 11 and tokens[0:4] == [1, 450, 4272, 310] and \
+                            tokens[7:9] == [338, 297] and tokens[10] == 29889):
+                        continue
+
+                if args.dataset == 'neg_cities':
+                    # Pattern: [Beginning token] / the / city / of/ [city name of 3 tokens] / is / not / in / [country name of 1 token] / .
+                    if not (len(tokens) == 12 and tokens[0:4] == [1, 450, 4272, 310] and \
+                            tokens[7:10] == [338, 451, 297] and tokens[11] == 29889):
+                        continue
+                
+                if args.dataset == 'larger_than':
+                    # Pattern: [Beginning token] / [number of 5 tokens] / is / larger / than / [number of 4 tokens] / .
+                    if not(len(tokens) == 14 and tokens[6:9] == [338, 7200, 1135] and tokens[13] == 29889):
+                        continue
+                
+                if args.dataset == 'smaller_than':
+                    # Pattern: [Beginning token] / [number of 5 tokens] / is / smaller / than / [number of 4 tokens] / .
+                    if not(len(tokens) == 14 and tokens[6:9] == [338, 7968, 1135] and tokens[13] == 29889):
+                        continue
+                
+                if args.dataset == 'sp_en_trans':
+                    # Pattern: [Beginning token] / The / Spanish / word / ' / [Spanish word of 2 tokens] / ' / means / ' / [English word of 1 token] / '.
+                    if not(len(tokens) == 12 and tokens[0:5] == [1, 450, 10432, 1734, 525] and \
+                            tokens[7:10] == [29915, 2794, 525] and tokens[11] == 4286):
+                        continue
+                
+                if args.dataset == 'neg_sp_en_trans':
+                    # Pattern: [Beginning token] / The / Spanish / word / ' / [Spanish word of 2 tokens] / ' / does / not / mean / ' / [English word of 1 token] / '.
+                    if not(len(tokens) == 14 and tokens[0:5] == [1, 450, 10432, 1734, 525] and \
+                            tokens[7:12] == [29915, 947, 451, 2099, 525] and tokens[13] == 4286):
                         continue
             
             elif model_family == 'mistral':  # For mistral-7B and mistral-7B-instruct, the beginning token is 1
@@ -153,7 +191,7 @@ def sample_data(model_name, dataset, device):
         
         # print(Counter(length_list))
         # exit()
-        # print(f'After filtering token positions, we have {len(true_statements)} true statements and {len(false_statements)} false statements.')
+        print(f'After filtering token positions, we have {len(true_statements)} true statements and {len(false_statements)} false statements.')
         # exit()
 
         false_by_last_word = {}
@@ -174,7 +212,7 @@ def sample_data(model_name, dataset, device):
                 true_prompts.append(true_statement)
             else:
                 if args.dataset == 'larger_than':
-                    assert last_word == 'fifty-one.'
+                    assert last_word in ['fifty-one.', 'fifty-seven.']
                 elif args.dataset == 'smaller_than':
                     assert last_word == 'eighty-nine.' or last_word[:7] == 'ninety-'
 
@@ -195,10 +233,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--model', type=str, default='mistral-7B', choices=[
         'llama-3.1-8b', 'llama-3.1-8b-instruct', 'llama-3.1-8b-sft',
+        'llama-2-13b', 'llama-2-13b-instruct',
         'mistral-7B', 'mistral-7B-instruct', 'mistral-7B-SFT',
         'deepseek-V2-lite', 'deepseek-V2-lite-chat'
     ])
-    parser.add_argument('--dataset', type=str, default='tulu_extracted')
+    parser.add_argument('--dataset', type=str, default='cities')
     parser.add_argument('--device', type=str, default='cuda:0')
     args = parser.parse_args()
     print(args)

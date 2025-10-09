@@ -82,10 +82,15 @@ def get_key(model_names, dataset, classes):
         return f"{model_names[0]}_{dataset}_{classes}"
 
 
-def visualize_results(model_names, dataset, classes="true_false"):
+def visualize_results(model_names, dataset, classes, need_question):
     # For the given model_name and dataset, load all the patching results, average them and visualize them.
-    with open('experimental_outputs/patching_results.json', 'r') as f:
-        all_results = json.load(f)
+    if need_question:
+        with open('experimental_outputs/patching_results.json', 'r') as f:
+            all_results = json.load(f)
+    else:
+        with open('experimental_outputs/patching_results_no_question.json', 'r') as f:
+            all_results = json.load(f)
+    
     key = get_key(model_names, dataset, classes)
     results_list = all_results[key]
     print(f"Found {len(results_list)} outputs for {key}.")
@@ -105,12 +110,14 @@ def visualize_results(model_names, dataset, classes="true_false"):
         logit_diffs = [[logit_diffs[i][j] for i in range(0, len(logit_diffs))[::-1]] for j in range(len(logit_diffs[0]))]
         sum_array += logit_diffs
     
-    tokens = find_dataset_tokens(model_names[0], dataset, classes)
+    tokens = find_dataset_tokens(model_names[0], dataset, classes, need_question)
     assert len(tokens) == n_toks
     if len(model_names) == 1:
         model_title = model_names[0]
     else:
         model_title = f"{model_names[0]}_to_{model_names[1]}"
+    if need_question == False:
+        model_title = "no_question_" + model_title
 
     mean_array = sum_array / len(results_list)
     mean_array = normalize(mean_array, classes)
@@ -118,26 +125,37 @@ def visualize_results(model_names, dataset, classes="true_false"):
         f"one_result/{model_title}_{dataset}")
 
 
-def compare_two_results(model_names1, model_names2, dataset, classes):
+def compare_two_results(model_names1, model_names2, dataset, classes, need_question1, need_question2):
     # Compare the two models' patching results for the given dataset
     key1 = get_key(model_names1, dataset, classes)
     key2 = get_key(model_names2, dataset, classes)
 
-    with open('experimental_outputs/patching_results.json', 'r') as f:  # Load patching results
-        all_data = json.load(f)
+    if need_question1:
+        with open('experimental_outputs/patching_results.json', 'r') as f:  # Load patching results
+            all_data = json.load(f)
+    else:
+        with open('experimental_outputs/patching_results_no_question.json', 'r') as f:
+            all_data = json.load(f)
     results_list1 = all_data[key1]
+    if need_question2:
+        with open('experimental_outputs/patching_results.json', 'r') as f:
+            all_data = json.load(f)
+    else:
+        with open('experimental_outputs/patching_results_no_question.json', 'r') as f:
+            all_data = json.load(f)
     results_list2 = all_data[key2]
     print(f'Found {len(results_list1)} results for {key1} and {len(results_list2)} results for {key2}.')
 
-    n_toks = len(results_list1[0]['logit_diffs'])   # Token number
+    n_toks1 = len(results_list1[0]['logit_diffs'])   # Token number
     for result in results_list1:
-        assert len(result['logit_diffs']) == n_toks
+        assert len(result['logit_diffs']) == n_toks1
+    n_toks2 = len(results_list2[0]['logit_diffs'])   # Token number
     for result in results_list2:
-        assert len(result['logit_diffs']) == n_toks
+        assert len(result['logit_diffs']) == n_toks2
     n_layers = len(results_list2[0]['logit_diffs'][0])
 
-    sum_array1 = np.zeros((n_layers, n_toks), dtype=np.float32)  # Accumulator to sum over all prompts
-    sum_array2 = np.zeros((n_layers, n_toks), dtype=np.float32)  # Accumulator to sum over all prompts
+    sum_array1 = np.zeros((n_layers, n_toks1), dtype=np.float32)  # Accumulator to sum over all prompts
+    sum_array2 = np.zeros((n_layers, n_toks2), dtype=np.float32)  # Accumulator to sum over all prompts
 
     for result in results_list1:
         logit_diffs = result['logit_diffs']  # shape [n_toks, n_layers]
@@ -151,20 +169,28 @@ def compare_two_results(model_names1, model_names2, dataset, classes):
 
     mean_array1 = sum_array1 / len(results_list1)
     mean_array2 = sum_array2 / len(results_list2)
+    n_toks = min(n_toks1, n_toks2)
+    mean_array1 = mean_array1[:, :n_toks]
+    mean_array2 = mean_array2[:, :n_toks]
     mean_array1 = normalize(mean_array1, classes)
     mean_array2 = normalize(mean_array2, classes)
     diff_array = mean_array1 - mean_array2
 
-    tokens = find_dataset_tokens(model_names1[0], dataset, classes)
+    tokens1 = find_dataset_tokens(model_names1[0], dataset, classes, need_question1)
+    tokens2 = find_dataset_tokens(model_names2[0], dataset, classes, need_question2)
+    if len(tokens1) < len(tokens2):
+        tokens = tokens1
+    else:
+        tokens = tokens2
     assert len(tokens) == n_toks
     s_pattern = re.compile(r"\[s\d+\]")
     o_pattern = re.compile(r"\[o\d+\]")
     # Find indices of elements matching the patterns
     knowledge_indices = [i for i, item in enumerate(tokens) if s_pattern.fullmatch(item) or o_pattern.fullmatch(item)]
     diff_array_knowledge = diff_array[:, knowledge_indices]
-    period_indices = [i for i, item in enumerate(tokens) if item == '.' or item  == "'."]
-    assert len(period_indices) == 1
-    diff_array_period = diff_array[:, period_indices[0]:period_indices[0] + 1]
+    # period_indices = [i for i, item in enumerate(tokens) if item == '.' or item  == "'."]
+    # assert len(period_indices) == 1
+    # diff_array_period = diff_array[:, period_indices[0]:period_indices[0] + 1]
     print(f'Maximum value of the difference matrix: {np.abs(diff_array).max():.1f}, '
         f'knowledge part: {np.abs(diff_array_knowledge).max():.1f}')
 
@@ -183,8 +209,15 @@ def compare_two_results(model_names1, model_names2, dataset, classes):
     # spearman_corr, _ = spearmanr(mean_array1.flatten(), shuffled_array2.flatten())
     # print(f'Pearson correlation of the two matrices (shuffled): {pearson_corr}; Spearman correlation (shuffled): {spearman_corr}')
 
-    draw_figure(diff_array, tokens, "log P(T)/P(F)", f"{'_to_'.join(model_names1)} - {'_to_'.join(model_names2)}  {dataset}",
-        f"compare_two/{'_to_'.join(model_names1)}_{'_to_'.join(model_names2)}_{dataset}")
+    if need_question1 == True and need_question2 == True:
+        draw_figure(diff_array, tokens, "log P(T)/P(F)", f"{'_to_'.join(model_names1)} - {'_to_'.join(model_names2)}  {dataset}",
+            f"compare_two/{'_to_'.join(model_names1)}_{'_to_'.join(model_names2)}_{dataset}")
+    elif (need_question1 == True and need_question2 == False) or (need_question1 == False and need_question2 == True):
+        draw_figure(diff_array, tokens, "log P(T)/P(F)", f"{'_to_'.join(model_names1)} - {'_to_'.join(model_names2)}  {dataset}",
+            f"compare_one_question_or_not/{'_to_'.join(model_names1)}_{'_to_'.join(model_names2)}_{dataset}")
+    else:
+        draw_figure(diff_array, tokens, "log P(T)/P(F)", f"{'_to_'.join(model_names1)} - {'_to_'.join(model_names2)}  {dataset}",
+            f"compare_two_no_question/{'_to_'.join(model_names1)}_{'_to_'.join(model_names2)}_{dataset}")
 
 
 def visualize_results_tulu(model_names, dataset, classes):
@@ -270,6 +303,8 @@ def compare_two_results_tulu(model_names1, model_names2, dataset, classes):
 
     if model_names1[0].startswith('llama-3.1-8b'):
         few_shot_example_toks = 64
+    elif model_names1[0].startswith('llama-2-13b'):
+        few_shot_example_toks = 69
     else:
         assert model_names1[0].startswith('mistral-7B')
         few_shot_example_toks = 70
@@ -330,16 +365,21 @@ def compare_two_results_tulu(model_names1, model_names2, dataset, classes):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_names1', type=str, nargs='+', default=['llama-3.1-8b-instruct', 'llama-3.1-8b'],
+    parser.add_argument('--model_names1', type=str, nargs='+', default=[],
         choices=['llama-3.1-8b', 'llama-3.1-8b-instruct', 'llama-3.1-8b-sft',
+        'llama-2-13b', 'llama-2-13b-instruct',
         'mistral-7B', 'mistral-7B-instruct', 'mistral-7B-SFT'],
         help='The first result to visualize or compare.')
-    parser.add_argument('--model_names2', type=str, nargs='+', default=['llama-3.1-8b-instruct'],
+    parser.add_argument('--model_names2', type=str, nargs='+', default=[],
         choices=['llama-3.1-8b', 'llama-3.1-8b-instruct', 'llama-3.1-8b-sft',
         'mistral-7B', 'mistral-7B-instruct', 'mistral-7B-SFT'],
         help='The second result to visualize or compare. If only visualize one result, set this one to [].')
-    parser.add_argument('--dataset', type=str, default='cities')
+    parser.add_argument('--dataset', type=str, default='neg_sp_en_trans')
     parser.add_argument('--classes', type=str, default='true_false')
+    parser.add_argument('--need_question1', type=bool, default=False,
+        help='Whether to add "This statement is:" at the end of the prompt for the first model.')
+    parser.add_argument('--need_question2', type=bool, default=False,
+        help='Whether to add "This statement is:" at the end of the prompt for the second model.')
     args = parser.parse_args()
     print(args)
 
@@ -347,6 +387,9 @@ if __name__ == '__main__':
     if all_model_names[0].startswith('llama-3.1-8b'):
         for model_name in all_model_names:
             assert model_name.startswith('llama-3.1-8b')
+    elif all_model_names[0].startswith('llama-2-13b'):
+        for model_name in all_model_names:
+            assert model_name.startswith('llama-2-13b')
     elif all_model_names[0].startswith('mistral-7B'):
         for model_name in all_model_names:
             assert model_name.startswith('mistral-7B')
@@ -355,9 +398,10 @@ if __name__ == '__main__':
 
     if args.dataset != 'tulu_extracted':
         if len(args.model_names2) > 0:
-            compare_two_results(args.model_names1, args.model_names2, args.dataset, args.classes)
+            compare_two_results(args.model_names1, args.model_names2, args.dataset, args.classes,
+                args.need_question1, args.need_question2)
         else:
-            visualize_results(args.model_names1, args.dataset, args.classes)
+            visualize_results(args.model_names1, args.dataset, args.classes, args.need_question1)
     else:  # For the Tulu dataset, the false and true prompts can have different lengths,
         # and the tokens that differ between the two prompts vary by pair.
         if len(args.model_names2) > 0:
