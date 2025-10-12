@@ -77,8 +77,6 @@ This section covers how to run patching experiments to understand where knowledg
 
 ## Data Preparation Steps
 
-### Step 1: Process Datasets to Create Paired Statements
-
 Before running patching experiments, you need to process the raw CSV datasets to create paired true/false statements that are matched by their last word. This is crucial for the patching experiments.
 
 **For each dataset and model combination, run:**
@@ -95,15 +93,6 @@ python patching_process_data.py --model llama-3.1-8b --dataset smaller_than --de
 
 This will create `*_paired.json` files in the datasets directory with matched true/false statement pairs.
 
-### Step 2: Generate Activations
-
-After processing the data, generate activations for the target layers:
-
-```bash
-# For LLaMA-3.1-8B
-python generate_acts.py --model llama-3.1-8b --layers -1 \
---datasets cities sp_en_trans animal_class inventors element_symb facts --device cuda:0
-```
 
 ## Running Patching Experiments
 
