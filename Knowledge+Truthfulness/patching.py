@@ -12,62 +12,6 @@ import difflib
 from generate_acts import load_model
 
 
-# prompt for cities
-false_prompt = "The city of Tokyo is in Japan. This statement is: TRUE\nThe city of Hanoi is in Poland. This statement is: FALSE\nThe city of Chicago is in Canada. This statement is:"
-true_prompt = "The city of Tokyo is in Japan. This statement is: TRUE\nThe city of Hanoi is in Poland. This statement is: FALSE\nThe city of Toronto is in Canada. This statement is:"
-
-# prompt for larger_than
-# false_prompt = "Fifty-one is larger than seventy-five. This statement is: FALSE\nEighty-two is larger than sixty-four. This statement is: TRUE\nEighty-one is larger than eighty-four. This statement is:"
-# true_prompt = "Fifty-one is larger than seventy-five. This statement is: FALSE\nEighty-two is larger than sixty-four. This statement is: TRUE\nEighty-six is larger than eighty-four. This statement is:"
-
-# prompt for sp_en_trans
-'''
-false_prompt = """\
-The Spanish word 'jirafa' means 'giraffe'. This statement is: TRUE
-The Spanish word 'escribir' means 'to write'. This statement is: TRUE
-The Spanish word 'diccionario' means 'dictionary'. This statement is: TRUE
-The Spanish word 'gato' means 'cat'. This statement is: TRUE
-The Spanish word 'aire' means 'silver'. This statement is: FALSE
-The Spanish word 'con' means 'one'. This statement is:"""
-true_prompt = """\
-The Spanish word 'jirafa' means 'giraffe'. This statement is: TRUE
-The Spanish word 'escribir' means 'to write'. This statement is: TRUE
-The Spanish word 'diccionario' means 'dictionary'. This statement is: TRUE
-The Spanish word 'gato' means 'cat'. This statement is: TRUE
-The Spanish word 'aire' means 'silver'. This statement is: FALSE
-The Spanish word 'uno' means 'one'. This statement is:"""
-
-false_prompt = """\
-The city of Barnaul is in South Africa. This statement is: FALSE
-The city of Leon de los Aldama is in China. This statement is: FALSE
-The city of Kyiv is in Russia. This statement is: FALSE
-The city of Liupanshui is in the Philippines. This statement is: FALSE
-The city of Ahvaz is in China. This statement is: FALSE
-The city of Kyiv is in China. This statement is: """
-true_prompt = """\
-The city of Barnaul is in South Africa. This statement is: FALSE
-The city of Leon de los Aldama is in China. This statement is: FALSE
-The city of Kyiv is in Russia. This statement is: FALSE
-The city of Liupanshui is in the Philippines. This statement is: FALSE
-The city of Ahvaz is in China. This statement is: FALSE
-The city of Anqing is in China. This statement is: """
-    
-false_prompt = """\
-"Ninety-two is larger than fifty-five. This statement is: TRUE
-Seventy-eight is larger than ninety-five. This statement is: FALSE
-Seventy-one is larger than ninety-one. This statement is: FALSE
-Sixty-six is larger than ninety-nine. This statement is: FALSE
-Seventy-four is larger than seventy-three. This statement is: TRUE
-Fifty-two is larger than fifty-four This statement is: """
-true_prompt = """\
-"Ninety-two is larger than fifty-five. This statement is: TRUE
-Seventy-eight is larger than ninety-five. This statement is: FALSE
-Seventy-one is larger than ninety-one. This statement is: FALSE
-Sixty-six is larger than ninety-nine. This statement is: FALSE
-Seventy-four is larger than seventy-three. This statement is: TRUE
-Fifty-six is larger than fifty-four This statement is: """
-'''
-
 def set_random_seed(seed: int):
     random.seed(seed)
     np.random.seed(seed)
@@ -80,85 +24,80 @@ def set_random_seed(seed: int):
 
 
 def load_data(model_name, dataset, classes, need_question):
-    if len(dataset) == 0:
-        false_prompts = [false_prompt]
-        true_prompts = [true_prompt]
-    
+    if model_name in ['llama-3.1-8b', 'llama-3.1-8b-instruct', 'llama-3.1-8b-sft']:
+        model_family = 'llama3'
+    elif model_name in ['llama-2-13b', 'llama-2-13b-instruct']:
+        model_family = 'llama2'
+    elif model_name in ['mistral-7B', 'mistral-7B-instruct', 'mistral-7B-SFT']:
+        model_family = 'mistral'
+    elif model_name in ['deepseek-V2-lite', 'deepseek-V2-lite-chat']:
+        model_family = 'deepseek-V2'
     else:
-        if model_name in ['llama-3.1-8b', 'llama-3.1-8b-instruct', 'llama-3.1-8b-sft']:
-            model_family = 'llama3'
-        elif model_name in ['llama-2-13b', 'llama-2-13b-instruct']:
-            model_family = 'llama2'
-        elif model_name in ['mistral-7B', 'mistral-7B-instruct', 'mistral-7B-SFT']:
-            model_family = 'mistral'
-        elif model_name in ['deepseek-V2-lite', 'deepseek-V2-lite-chat']:
-            model_family = 'deepseek-V2'
+        raise ValueError(f"Model {model_name} not recognized")
+    
+    with open(f"datasets/{dataset}_paired.json", 'r') as f:
+        data = json.load(f)
+    true_prompts = data[f'{model_family}_true_prompts']
+    false_prompts = data[f'{model_family}_false_prompts']
+
+    set_random_seed(1)
+    print(f'Loaded {len(true_prompts)} pairs of true/false prompts')
+
+    if dataset == 'cities':
+        example_true_list = ["The city of Dar es Salaam is in Tanzania.", "The city of Kozhikode is in India."]
+        example_false_list = ["The city of Dar es Salaam is in Italy.", "The city of Kozhikode is in the United States."]
+    elif dataset == 'neg_cities':
+        example_false_list = ["The city of Dar es Salaam is not in Tanzania.", "The city of Kozhikode is not in India."]
+        example_true_list = ["The city of Dar es Salaam is not in Italy.", "The city of Kozhikode is not in the United States."]
+    elif dataset == 'larger_than':
+        example_false_list = ["Fifty-eight is larger than ninety-six.", "Seventy-nine is larger than ninety-seven."]
+        example_true_list = ["Seventy-eight is larger than seventy-three.", "Ninety-six is larger than sixty-six."]
+    elif dataset == 'smaller_than':
+        example_true_list = ["Fifty-eight is smaller than ninety-six.", "Seventy-nine is smaller than ninety-seven."]
+        example_false_list = ["Seventy-eight is smaller than seventy-three.", "Ninety-six is smaller than sixty-six."]
+    elif dataset == 'sp_en_trans':
+        example_true_list = ["The Spanish word 'bosque' means 'forest'.", "The Spanish word 'piel' means 'skin'."]
+        example_false_list = ["The Spanish word 'gobernar' means 'to eat'.", "The Spanish word 'edad' means 'clock'."]
+    elif dataset == 'neg_sp_en_trans':
+        example_false_list = ["The Spanish word 'bosque' does not mean 'forest'.", "The Spanish word 'piel' does not mean 'skin'."]
+        example_true_list = ["The Spanish word 'gobernar' does not mean 'to eat'.", "The Spanish word 'edad' does not mean 'clock'."]
+    elif dataset == 'tulu_extracted':
+        example_true_list = ["The Eiffel Tower is located in Paris.", "'The Great Gatsby' was written by F. Scott Fitzgerald."]
+        example_false_list = ["The largest moon of Saturn is Earth.", "Albert Einstein developed the theory of evolution."]
+    else:
+        raise ValueError(f"Dataset {args.dataset} not recognized")
+
+    if need_question:   # Add "This statement is:" at the end of the prompt
+        if classes in ['true_false', 'true_false_noise']:
+            example_list = [f"{example} This statement is: TRUE\n" for example in example_true_list]
+            example_list.extend([f"{example} This statement is: FALSE\n" for example in example_false_list])
         else:
-            raise ValueError(f"Model {model_name} not recognized")
-        
-        with open(f"datasets/{dataset}_paired.json", 'r') as f:
-            data = json.load(f)
-        true_prompts = data[f'{model_family}_true_prompts']
-        false_prompts = data[f'{model_family}_false_prompts']
+            raise ValueError(f"Class {classes} not recognized")        
+    else:
+        example_list = [f"{example}\n" for example in example_true_list]
 
-        set_random_seed(1)
-        print(f'Loaded {len(true_prompts)} pairs of true/false prompts')
-
-        if dataset == 'cities':
-            example_true_list = ["The city of Dar es Salaam is in Tanzania.", "The city of Kozhikode is in India."]
-            example_false_list = ["The city of Dar es Salaam is in Italy.", "The city of Kozhikode is in the United States."]
-        elif dataset == 'neg_cities':
-            example_false_list = ["The city of Dar es Salaam is not in Tanzania.", "The city of Kozhikode is not in India."]
-            example_true_list = ["The city of Dar es Salaam is not in Italy.", "The city of Kozhikode is not in the United States."]
-        elif dataset == 'larger_than':
-            example_false_list = ["Fifty-eight is larger than ninety-six.", "Seventy-nine is larger than ninety-seven."]
-            example_true_list = ["Seventy-eight is larger than seventy-three.", "Ninety-six is larger than sixty-six."]
-        elif dataset == 'smaller_than':
-            example_true_list = ["Fifty-eight is smaller than ninety-six.", "Seventy-nine is smaller than ninety-seven."]
-            example_false_list = ["Seventy-eight is smaller than seventy-three.", "Ninety-six is smaller than sixty-six."]
-        elif dataset == 'sp_en_trans':
-            example_true_list = ["The Spanish word 'bosque' means 'forest'.", "The Spanish word 'piel' means 'skin'."]
-            example_false_list = ["The Spanish word 'gobernar' means 'to eat'.", "The Spanish word 'edad' means 'clock'."]
-        elif dataset == 'neg_sp_en_trans':
-            example_false_list = ["The Spanish word 'bosque' does not mean 'forest'.", "The Spanish word 'piel' does not mean 'skin'."]
-            example_true_list = ["The Spanish word 'gobernar' does not mean 'to eat'.", "The Spanish word 'edad' does not mean 'clock'."]
-        elif dataset == 'tulu_extracted':
-            example_true_list = ["The Eiffel Tower is located in Paris.", "'The Great Gatsby' was written by F. Scott Fitzgerald."]
-            example_false_list = ["The largest moon of Saturn is Earth.", "Albert Einstein developed the theory of evolution."]
+    final_true_prompts = []
+    final_false_prompts = []
+    for i in range(len(true_prompts)):
+        random.shuffle(example_list)  # randomly perturb the order of the examples
+        if need_question:
+            final_true_prompts.append(''.join(example_list) + true_prompts[i] + " This statement is:")
+            final_false_prompts.append(''.join(example_list) + false_prompts[i] + " This statement is:")
         else:
-            raise ValueError(f"Dataset {args.dataset} not recognized")
-
-        if need_question:   # Add "This statement is:" at the end of the prompt
-            if classes in ['true_false', 'true_false_noise']:
-                example_list = [f"{example} This statement is: TRUE\n" for example in example_true_list]
-                example_list.extend([f"{example} This statement is: FALSE\n" for example in example_false_list])
-            else:
-                raise ValueError(f"Class {classes} not recognized")        
-        else:
-            example_list = [f"{example}\n" for example in example_true_list]
-
-        final_true_prompts = []
-        final_false_prompts = []
-        for i in range(len(true_prompts)):
-            random.shuffle(example_list)  # randomly perturb the order of the examples
-            if need_question:
-                final_true_prompts.append(''.join(example_list) + true_prompts[i] + " This statement is:")
-                final_false_prompts.append(''.join(example_list) + false_prompts[i] + " This statement is:")
-            else:
-                splitted_true_prompt = true_prompts[i].split()
-                label = splitted_true_prompt[-1][:-1]   # remove the last character (the period)
-                actual_true_prompt = ' '.join(splitted_true_prompt[:-1])
-                splitted_false_prompt = false_prompts[i].split()
-                assert label == splitted_false_prompt[-1][:-1]
-                actual_false_prompt = ' '.join(splitted_false_prompt[:-1])
-                if dataset == 'sp_en_trans':
-                    actual_true_prompt = actual_true_prompt + " '"
-                    actual_false_prompt = actual_false_prompt + " '"
-                    label = label[1:-1]  # remove the single quotes
-                final_true_prompts.append([''.join(example_list) + actual_true_prompt, label])
-                final_false_prompts.append([''.join(example_list) + actual_false_prompt, label])
-        true_prompts = final_true_prompts
-        false_prompts = final_false_prompts
+            splitted_true_prompt = true_prompts[i].split()
+            label = splitted_true_prompt[-1][:-1]   # remove the last character (the period)
+            actual_true_prompt = ' '.join(splitted_true_prompt[:-1])
+            splitted_false_prompt = false_prompts[i].split()
+            assert label == splitted_false_prompt[-1][:-1]
+            actual_false_prompt = ' '.join(splitted_false_prompt[:-1])
+            if dataset == 'sp_en_trans':
+                actual_true_prompt = actual_true_prompt + " '"
+                actual_false_prompt = actual_false_prompt + " '"
+                label = label[1:-1]  # remove the single quotes
+            final_true_prompts.append([''.join(example_list) + actual_true_prompt, label])
+            final_false_prompts.append([''.join(example_list) + actual_false_prompt, label])
+    true_prompts = final_true_prompts
+    false_prompts = final_false_prompts
     
     if model_name == 'mistral-7B-SFT':   # Fix its tokenizer's bug
         if need_question:

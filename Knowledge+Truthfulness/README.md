@@ -24,6 +24,8 @@ noperiod = False
 ```
 
 
+# Truthfulness Probe Experiments
+
 ## Step 1: Generate Activations
 
 Before training probes, you need to extract activations from the target layers.
