@@ -87,10 +87,11 @@ Before running patching experiments, you need to process the raw CSV datasets to
 # For LLaMA-3.1-8B
 python patching_process_data.py --model llama-3.1-8b --dataset cities --device cuda:0
 python patching_process_data.py --model llama-3.1-8b --dataset neg_cities --device cuda:0
-python patching_process_data.py --model llama-3.1-8b --dataset sp_en_trans --device cuda:0
-python patching_process_data.py --model llama-3.1-8b --dataset neg_sp_en_trans --device cuda:0
 python patching_process_data.py --model llama-3.1-8b --dataset larger_than --device cuda:0
 python patching_process_data.py --model llama-3.1-8b --dataset smaller_than --device cuda:0
+python patching_process_data.py --model llama-3.1-8b --dataset sp_en_trans --device cuda:0
+python patching_process_data.py --model llama-3.1-8b --dataset neg_sp_en_trans --device cuda:0
+python patching_process_data.py --model llama-3.1-8b --dataset tulu_extracted --device cuda:0
 ```
 
 This will create `*_paired.json` files in the datasets directory with matched true/false statement pairs.
