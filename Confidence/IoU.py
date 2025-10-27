@@ -231,18 +231,9 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     
-    # Convert string inputs to appropriate types if needed
     norm_top_percentages = [float(p) for p in args.norm_top_percentages]
     var_bottom_ns = [int(n) for n in args.var_bottom_ns]
     
-    # Run the main function
+
     main(args.model1, args.model2, norm_top_percentages, var_bottom_ns)
 
-
-'''
-python IoU.py --model1 llama-3.1-8b --model2 llama-3.1-8b-instruct --norm_top_percentages 0.25 --var_bottom_ns 10
-'''
-
-'''
-python IoU.py --model1 llama-2-13b --model2 llama-2-13b-instruct --norm_top_percentages 0.25 --var_bottom_ns 10
-'''
