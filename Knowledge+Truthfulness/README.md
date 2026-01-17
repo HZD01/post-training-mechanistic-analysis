@@ -107,6 +107,8 @@ Patching within one model (replacing activations from true statements with those
 python patching.py --model llama-3.1-8b-instruct --dataset cities --classes true_false --device cuda:0
 ```
 
+The patching result are automatically saved in experimental_outputs/patching_results.json or experimental_outputs/patching_results_no_question.json
+
 ### Cross-Model Patching
 
 Patching between two models (replacing activations of true statements from one model with activations of false statements from another model):
@@ -117,7 +119,7 @@ python patching.py --model llama-3.1-8b llama-3.1-8b-instruct --dataset cities -
 
 ## Visualizing Results
 
-After running patching experiments, you can visualize the results.
+After running patching experiments, you can visualize the results. The visualization figures are automatically generated in experimental_outputs/patching_png and experimental_outputs/patching_pdf.
 
 ### Visualizing One Patching Result
 
@@ -128,7 +130,7 @@ python patching_visualize.py --dataset cities --classes true_false --model_names
 If you want to visualize the cross-model patching result, please write the two model's names after the "--model_names1", such as "--model_names1 llama-3.1-8b llama-3.1-8b-instruct" (not "--model_names2").
 
 ```bash
-python patching_visualize.py --dataset cities --classes true_false --model_names1 llama-3.1-8b
+python patching_visualize.py --dataset cities --classes true_false --model_names1 llama-3.1-8b llama-3.1-8b-instruct
 ```
 
 ### Visualizing the Comparison of Two Patching Results

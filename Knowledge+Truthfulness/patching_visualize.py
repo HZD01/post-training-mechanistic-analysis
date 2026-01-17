@@ -70,6 +70,13 @@ def draw_figure(mean_array, tokens, colorbar_title, title, save_name):
     )
     fig.update_xaxes(tickfont_size=base_font_size)
     fig.update_yaxes(title_font_size=base_font_size + 2, tickfont_size=base_font_size)
+    
+    os.makedirs("experimental_outputs/patching_png", exist_ok=True)
+    os.makedirs("experimental_outputs/patching_pdf", exist_ok=True)
+    save_dir = save_name.split('/')[0]
+    os.makedirs(f"experimental_outputs/patching_png/{save_dir}", exist_ok=True)
+    os.makedirs(f"experimental_outputs/patching_pdf/{save_dir}", exist_ok=True)
+    
     fig.write_image(f"experimental_outputs/patching_png/{save_name}.png")
     fig.write_image(f"experimental_outputs/patching_pdf/{save_name}.pdf")
 
@@ -376,9 +383,9 @@ if __name__ == '__main__':
         help='The second result to visualize or compare. If only visualize one result, set this one to [].')
     parser.add_argument('--dataset', type=str, default='neg_sp_en_trans')
     parser.add_argument('--classes', type=str, default='true_false')
-    parser.add_argument('--need_question1', type=bool, default=False,
+    parser.add_argument('--need_question1', type=bool, default=True,
         help='Whether to add "This statement is:" at the end of the prompt for the first model.')
-    parser.add_argument('--need_question2', type=bool, default=False,
+    parser.add_argument('--need_question2', type=bool, default=True,
         help='Whether to add "This statement is:" at the end of the prompt for the second model.')
     args = parser.parse_args()
     print(args)
